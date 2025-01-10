@@ -1,9 +1,9 @@
 import pandas as pd
 
 arquivo_entrada = 'estoque_desbloqueado.xlsx'
-arquivo_saida_json = 'estoque_tratado.json'
+arquivo_saida_csv = 'estoque_tratado.csv'
 
-def tratar_e_salvar_em_json(arquivo_entrada, arquivo_saida_json):
+def tratar_e_salvar_em_csv(arquivo_entrada, arquivo_saida_csv):
     try:
         df = pd.read_excel(arquivo_entrada, header=None)
 
@@ -22,11 +22,11 @@ def tratar_e_salvar_em_json(arquivo_entrada, arquivo_saida_json):
     
         df_selecionado.info(), df_selecionado.head()
 
-        df_selecionado.to_json(arquivo_saida_json, orient='records', lines=True)
-        return f"Dados tratados e salvos em: {arquivo_saida_json}"
+        df_selecionado.to_csv(arquivo_saida_csv, index=False, encoding='utf-8')
+        return f"Dados tratados e salvos em: {arquivo_saida_csv}"
 
     except Exception as e:
         return f"Erro ao processar o arquivo: {e}"
 
-resultado = tratar_e_salvar_em_json(arquivo_entrada, arquivo_saida_json)
+resultado = tratar_e_salvar_em_csv(arquivo_entrada, arquivo_saida_csv)
 resultado
